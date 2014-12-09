@@ -1,7 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Vad Kaminskiy
- * Date: 09.12.2014
- * Time: 16:33
- */ 
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="views/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="views/css/style.css" />
