@@ -11,8 +11,30 @@ function News_getAll()
     ");
 }
 
+// Отдельная страница. Создаём функцию, которая получает полученный id и сравнивает
+function Get_Page($pagenews_id){
+        // Отбираем id такое же как и полученное, обрабатываем общей функцией
+    return DBQuery("
+      SELECT title, text, datanews FROM news WHERE id = $pagenews_id
+    ");
+}
 
+// Отдельная страница. Создаём функцию, которая получает полученный id и сравноивает
+function Edit_Page($editnews_id){
+        // Отбираем id такое же как и полученное, обрабатываем общей функцией
+    return DBQuery("
+      SELECT title, text, datanews FROM news WHERE id = $editnews_id
+    ");
+}
 
+/* // Также только более понятно
+function Get_Page($pagenews_id){
+$query = "SELECT title, text, datanews FROM news WHERE id = $pagenews_id";
+    $res = mysql_query($query);    // Посылает запрос MySQL /устарело
+    $get_page = array();
+    $get_page = mysql_fetch_assoc($res);  //Возвращает ассоциативный массив, соответсвующий полученному ряду и сдвигает вперед внутренний указатель результата. / устарело
+    return $get_page;
+}*/
 
 // Передайм данные методом пост в БД
 function Add_news()
@@ -20,11 +42,16 @@ function Add_news()
     $title = $_POST["title"];
     $text = $_POST["text"];
     $date = date_create();
-    $date1 = date_format($date, 'Y-m-d') . "\n";
-    return DBQuery("
-        INSERT INTO news(`title`, `text`, `datanews`)
-            VALUES($title, $text, $date1)
-    ");
+    $datanews = date_format($date, 'Y-m-d') . "\n";
+    if(empty($title)) echo '<li>Введите текст статьи</li>'; redirect(); // Не работает
+    if(empty($text)) echo '<li>Введите текст статьи</li>'; redirect();// Не работает
+    DBConnect();
+    $query = "INSERT INTO news (title, text, datanews)
+                        VALUES ('$title', '$text', '$datanews')";
+    $res = mysql_query($query);
+    return $res;
 }
+
+
 
 

@@ -9,8 +9,9 @@
         <?php foreach ($news as $article): ?>
             <article>
                 <h1><?=$article['title'];?></h1>
-                <div><?=$article['text'];?><a href="views/pagenews.php/?statya=<?=$article['id'];?>" target="_blank">Читать далее...</a></div>
+                <div><?=$article['text'];?><a href=controllers/controllernews.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>
                 <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
+                <div><a target="_blank" href="controllers/controllernews.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
             </article>
         <?php endforeach; ?>
     </div>

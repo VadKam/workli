@@ -12,3 +12,6 @@ require_once __DIR__ . '/controllers/controllernews.php';
 $news = News_getAll();
 include __DIR__ . '/views/cssjs.php';
 include __DIR__ . '/views/allnews.php';
+
+
+

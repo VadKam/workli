@@ -5,10 +5,7 @@
  * Date: 09.12.2014
  * Time: 16:28
  */
-/*if (isset($_POST['text'])){
-    header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
-}*/
-//require_once __DIR__ . '/../controllers/controllernews.php';
+
 ?>
 
 <html>
