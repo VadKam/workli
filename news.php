@@ -6,9 +6,13 @@ $pagenews_id  = (int)$_GET['pagenews'];
     // Помещаем в $get_page функцию, которая получает полученную id страницу
 $get_page = News_getOne($pagenews_id);
 if (false === $get_page)
-redirect('404.php');
+{
+    redirect('404.php');
+}
 include_once __DIR__ . '/views/news.php';
-?>
+
+
+
 
 
 

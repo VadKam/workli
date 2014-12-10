@@ -9,16 +9,22 @@
     <div id="pagesnews">
 
 
-        <?php foreach ($get_page as $article): ?>
             <article>
-                <h1><?=$article['title'];?></h1>
-                <div><?=$article['text'];?></div>
-                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
+                <h1><?=$get_page['title'];?></h1>
+                <div><?=$get_page['text'];?></div>
+                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$get_page['datanews'];?></div>
             </article>
-        <?php endforeach; ?>
+
+    <?
+    var_dump($get_page);
+        echo ($value["title"]);
 
 
 
+
+
+
+    ?>
     </div>
 </div>
 </body>
