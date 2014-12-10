@@ -1,6 +1,6 @@
 <?php
 
-// Подключаем фаил функции подключения к БД, 
+// Подключаем фаил функции подключения к БД,
 require_once __DIR__ . '/../functions/db.php';
 
 //Создаём Функцию, куда помещаем все данные из таблицы
@@ -12,20 +12,13 @@ function News_getAll()
 }
 
 // Отдельная страница. Создаём функцию, которая получает полученный id и сравнивает
-function Get_Page($pagenews_id){
-        // Отбираем id такое же как и полученное, обрабатываем общей функцией
+function News_getOne($pagenews_id){
+    // Отбираем id такое же как и полученное, обрабатываем общей функцией
     return DBQuery("
       SELECT title, text, datanews FROM news WHERE id = $pagenews_id
     ");
 }
 
-// Отдельная страница. Создаём функцию, которая получает полученный id и сравноивает
-function Edit_Page($editnews_id){
-        // Отбираем id такое же как и полученное, обрабатываем общей функцией
-    return DBQuery("
-      SELECT title, text, datanews FROM news WHERE id = $editnews_id
-    ");
-}
 
 /* // Также только более понятно
 function Get_Page($pagenews_id){
@@ -43,15 +36,12 @@ function Add_news()
     $text = $_POST["text"];
     $date = date_create();
     $datanews = date_format($date, 'Y-m-d') . "\n";
-    if(empty($title)) echo '<li>Введите текст статьи</li>'; redirect(); // Не работает
-    if(empty($text)) echo '<li>Введите текст статьи</li>'; redirect();// Не работает
+    if(empty($title)) echo '<li>Введите текст статьи</li>';  // Не работает
+    if(empty($text)) echo '<li>Введите текст статьи</li>'; // Не работает
     DBConnect();
     $query = "INSERT INTO news (title, text, datanews)
                         VALUES ('$title', '$text', '$datanews')";
     $res = mysql_query($query);
     return $res;
 }
-
-
-
 

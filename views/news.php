@@ -8,6 +8,7 @@
 <div id="maket">
     <div id="pagesnews">
 
+
         <?php foreach ($get_page as $article): ?>
             <article>
                 <h1><?=$article['title'];?></h1>
@@ -15,7 +16,8 @@
                 <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
             </article>
         <?php endforeach; ?>
-        <a href="http://github/workli/">На главную</a>
+
+
 
     </div>
 </div>
