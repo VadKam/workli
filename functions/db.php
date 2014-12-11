@@ -35,6 +35,7 @@ function DBQuery($sql)
     return $ret;
 }
 
+    // Возвращайт 1 элемнт массива из БД
 function DBQueryOne($sql){
     DBConnect();
     $res = mysql_query($sql);
