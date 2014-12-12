@@ -3,10 +3,7 @@
 require_once __DIR__ . '/../functions/db.php';
 
 // Отбираем одну новость
-
 $News_getOne = new News_getOne("SELECT title, text, datanews FROM news WHERE id = 39");
-
-
 /*
 var_dump($News_getOne->row);
 echo $News_getOne->row[title];
