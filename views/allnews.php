@@ -6,6 +6,7 @@
 <body>
 <div id="maket">
     <div id="pagesnews">
+
         <?php foreach ($news as $article): ?>
             <article>
                 <h1><?=$article['title'];?></h1>
@@ -14,6 +15,7 @@
                 <div><a target="_blank" href=editpage.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
             </article>
         <?php endforeach; ?>
+
     </div>
     <div id="knopkanews">
         <a target="_blank" href="views/addnews.php">Добавиить Новость</a>

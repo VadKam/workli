@@ -6,7 +6,7 @@
  * Time: 15:57
  */
 require_once __DIR__ . '/models/modelnews.php';
-$news = News_getAll();
+$news = $News_getAll->ret;
 include __DIR__ . '/views/allnews.php';
 
 

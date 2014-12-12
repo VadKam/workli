@@ -1,5 +1,42 @@
 <?php
 
+require_once __DIR__ . '/../functions/db.php';
+
+// Отбираем одну новость
+
+$News_getOne = new News_getOne("SELECT title, text, datanews FROM news WHERE id = 39");
+
+
+/*
+var_dump($News_getOne->row);
+echo $News_getOne->row[title];
+echo $News_getOne->row[text];
+echo $News_getOne->row[datanews];
+*/
+
+// Отбираем все новости
+$News_getAll = new News_getAll("SELECT * FROM news");
+//var_dump($News_getAll->ret);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* БЕЗ ООП
 // Подключаем фаил функции подключения к БД,
 require_once __DIR__ . '/../functions/db.php';
 
@@ -37,16 +74,8 @@ function Add_news()
 
 
 
-/*
-function One_string()
-{
-    return DBQueryOne("
-      SELECT * FROM news
-    ");
-}
-*/
 
-/*// Также только более понятно
+// Также только более понятно
 function Get_Page($get_page){
 $query = "SELECT title, text, datanews";
     $res = mysql_query($query);    // Посылает запрос MySQL /устарело

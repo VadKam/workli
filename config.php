@@ -7,6 +7,7 @@
  */
 
 return [
+    // В раздел БД(db) помещаем
     'db' => [
         'host' => 'localhost',
         'user' => 'root',
