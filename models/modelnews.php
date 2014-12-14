@@ -2,23 +2,45 @@
 
 require_once __DIR__ . '/../functions/db.php';
 
-// Отбираем одну новость
-$News_getOne = new News_getOne("SELECT title, text, datanews FROM news WHERE id = 39");
-/*
-var_dump($News_getOne->row);
-echo $News_getOne->row[title];
-echo $News_getOne->row[text];
-echo $News_getOne->row[datanews];
-*/
+//Создаем абстракиный класс Article наследующий DBConnect
+abstract class Article
+    extends DBConnect
+{
+    abstract public function insertArticle($title,$text, $datanews);
+    abstract public function selectArticle($id);
+    abstract public function updateArticle($id, $new_title, $new_text);
+}
 
-// Отбираем все новости
-$News_getAll = new News_getAll("SELECT * FROM news");
-//var_dump($News_getAll->ret);
+//Создаем класс News наследующий абстракиный класс Article
+class News
+    extends Article
+{
+        // Все статьи
+    public function AllNews() {
+        return $this->DBQuery("
+    SELECT * FROM news
+    ");
+    }
+        // Вставить в  БД
+    public function insertArticle($title,$text,$datanews) {
+        return $this->DBExec("
+          INSERT INTO news (title,text,datanews) VALUES ('$title','$text', '$datanews')
+        ");
+    }
+        // Выбрать статью
+    public function selectArticle($id) {
+        return $this->DBQueryOne("
+          SELECT * FROM news where id=$id
+        ");
+    }
+        // Обновить статью
+    public function updateArticle($id, $new_title, $new_text) {
+        return $this->DBExec("
+            UPDATE news SET title='$new_title',text='$new_text' WHERE id='$id'
+        ");
+    }
 
-
-
-
-
+}
 
 
 

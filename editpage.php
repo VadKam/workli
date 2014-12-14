@@ -9,7 +9,8 @@ require_once __DIR__ . '/models/modelnews.php';
 
 $editnews_id  = (int)$_GET['editnews'];
 // Помещаем в $get_page функцию, которая получает полученную id страницу
-$edit_page = News_getOne($editnews_id );
+$news = new News();
+$edit_page = $news->selectArticle($editnews_id);
 if (false === $edit_page)
     redirect('404.php');
 

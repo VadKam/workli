@@ -22,6 +22,7 @@
         <textarea name="text" style="resize: none; width: 100%; height: 350px; margin: 0 25px 25px;"></textarea>
         <input  type="submit" value="Добавить">
     </form>
+    <a href="../index.php">На главную</a>
     <div>
 </body>
 </html>

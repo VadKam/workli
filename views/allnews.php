@@ -7,7 +7,7 @@
 <div id="maket">
     <div id="pagesnews">
 
-        <?php foreach ($news as $article): ?>
+        <?php foreach ($articles as $article): ?>
             <article>
                 <h1><?=$article['title'];?></h1>
                 <div><?=$article['text'];?><a href=news.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>

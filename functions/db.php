@@ -3,63 +3,60 @@
 // Подключаемся к БД ООП
 class DBConnect
 {
-    private function config() // private
+    // Подключение к файлу
+    private function config()
     {
         return include __DIR__ . '/../config.php';
     }
+    // Подключение к БД
     public function __construct()
     {
         $config = $this->config();
-        mysql_connect(
+        $link = mysql_connect(
             $config['db']['host'],
             $config['db']['user'],
             $config['db']['password']
         );
-        mysql_select_db($config['db']['dbname']);
-        // var_dump(mysql_select_db($config['db']['dbname'])); возвращает true
-    }
-}
-
-// Одна новость
-class News_getOne
-    extends DBConnect // Наследуем
-{
-    public function __construct($sql) // Создаём функцию конструктор
-    {
-        parent::__construct(); // Наследуем  конструктор подключения
-        //var_dump($sql); Попадает
-        $this->res = mysql_query($sql);
-        //var_dump($this->res); //resource(7, mysql result)      Не попадало Так как не подключено было parent::__construct();
-        $this->row = mysql_fetch_assoc($this->res);
-        //var_dump ($this->row); // Все отлично, данные есть
-        return $this->row;
-    }
-}
-
-// Все новости
-class News_getAll
-    extends DBConnect
-{
-    public function __construct($sql) // Создаём функцию конструктор
-    {
-        parent::__construct(); // Наследуем  конструктор подключения
-        $this->res = mysql_query($sql);
-        if (!$this->res)
+        if (!$link)
         {
+            die('Could not connect: ' . mysql_error());
+        }
+        if(!mysql_select_db($config['db']['dbname']))
+        {
+            die('Could not select db: ' . mysql_error());
+        }
+    }
+    // Возвращает все
+    public function DBQuery($sql) {
+        $res = mysql_query($sql);
+        if (!$res) {
             echo mysql_error();
             return [];
         }
-        $this->ret = [];
-        while ($this->row = mysql_fetch_assoc($this->res))
+        $ret = [];
+        while ($row = mysql_fetch_assoc($res))
         {
-            $this->ret[] = $this->row;
+            $ret[] = $row;
         }
-        // var_dump($this->ret); // Выводит все
-        return $this->ret;
+        return $ret;
     }
+    // Возвращает одну новость
+    public function DBQueryOne($sql) {
+        return $this->DBQuery($sql)[0];
+    }
+    // Для записи в БД
+    public function DBExec($sql)
+    {
+        $res = mysql_query($sql);
+        if (false === $res) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
 }
-
-
 
 
 
