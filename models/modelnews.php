@@ -6,7 +6,7 @@ require_once __DIR__ . '/../functions/db.php';
 abstract class Article
     extends DBConnect
 {
-    abstract public function insertArticle($title,$text, $datanews);
+    abstract public function insertArticle($title, $text, $datanews);
     abstract public function selectArticle($id);
     abstract public function updateArticle($id, $new_title, $new_text);
 }
@@ -21,18 +21,19 @@ class News
     SELECT * FROM news
     ");
     }
+    // Одна статья
+    public function selectArticle($id) {
+        return $this->DBQueryOne("
+          SELECT * FROM news where id=$id
+        ");
+    }
         // Вставить в  БД
     public function insertArticle($title,$text,$datanews) {
         return $this->DBExec("
           INSERT INTO news (title,text,datanews) VALUES ('$title','$text', '$datanews')
         ");
     }
-        // Выбрать статью
-    public function selectArticle($id) {
-        return $this->DBQueryOne("
-          SELECT * FROM news where id=$id
-        ");
-    }
+
         // Обновить статью
     public function updateArticle($id, $new_title, $new_text) {
         return $this->DBExec("
@@ -41,6 +42,15 @@ class News
     }
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
