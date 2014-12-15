@@ -7,12 +7,12 @@
 <div id="maket">
     <div id="pagesnews">
 
-        <?php foreach ($view->articles as $article): ?>
+        <?php foreach ($views->articles as $key => $value): ?>
             <article>
-                <h1><?=$article['title'];?></h1>
-                <div><?=$article['text'];?><a href=news.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>
-                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
-                <div><a target="_blank" href=editpage.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
+                <h1><?=$value['title'];?></h1>
+                <div><?=$value['text'];?><a href=news.php?pagenews=<?=$value['id'];?> target="_blank">Читать далее...</a></div>
+                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$value['datanews'];?></div>
+                <div><a target="_blank" href=editpage.php?editnews=<?=$value['id'];?>">Редактировать Новость<?=$value['id'];?></a></div>
             </article>
         <?php endforeach; ?>
 
@@ -23,3 +23,20 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+<?php /*foreach ($view->articles as $article): ?>
+    <article>
+        <h1><?=$article['title'];?></h1>
+        <div><?=$article['text'];?><a href=news.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>
+        <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
+        <div><a target="_blank" href=editpage.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
+    </article>
+<?php endforeach; */?>
