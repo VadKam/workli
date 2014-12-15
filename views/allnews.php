@@ -7,18 +7,33 @@
 <div id="maket">
     <div id="pagesnews">
 
-        <?php foreach ($views->articles as $key => $value): ?>
+
+
+        <?
+        echo "Здесь должен быть код <br>";
+        $i =0;
+        while($i < 10){
+            $i++;
+            echo $i . "<br>";
+        }
+        /*foreach ($views->articles as $key => $value) {
+        echo($value['title']) . '<br>'; //Работает
+        }*/
+        ?>
+        <?php foreach ($views->articles as $article): ?>
             <article>
-                <h1><?=$value['title'];?></h1>
-                <div><?=$value['text'];?><a href=news.php?pagenews=<?=$value['id'];?> target="_blank">Читать далее...</a></div>
-                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$value['datanews'];?></div>
-                <div><a target="_blank" href=editpage.php?editnews=<?=$value['id'];?>">Редактировать Новость<?=$value['id'];?></a></div>
+                <h1><?=$article['title'];?></h1>
+                <div><?=$article['text'];?><a href=news.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>
+                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
+                <div><a target="_blank" href=editpage.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
             </article>
-        <?php endforeach; ?>
+        <?php endforeach;?>
+
+
 
     </div>
     <div id="knopkanews">
-        <a target="_blank" href="views/addnews.php">Добавиить Новость</a>
+        <a target="_blank" href="views/addnews.php">Добавить Новость</a>
     </div>
 </div>
 </body>
@@ -32,11 +47,3 @@
 
 
 
-<?php /*foreach ($view->articles as $article): ?>
-    <article>
-        <h1><?=$article['title'];?></h1>
-        <div><?=$article['text'];?><a href=news.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>
-        <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
-        <div><a target="_blank" href=editpage.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
-    </article>
-<?php endforeach; */?>

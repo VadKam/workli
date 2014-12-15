@@ -6,8 +6,6 @@
  * Time: 15:57
  */
 require_once __DIR__ . '/models/newmodel.php';
-//include __DIR__ . '/views/allnews.php';
-//$views->articles = $news->AllNews();
-require_once __DIR__ . '/models/iterator.php';
-
-
+// require_once __DIR__ . '/models/modelnews.php';
+// include __DIR__ . '/views/allnews.php';
+echo($html);

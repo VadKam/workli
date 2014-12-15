@@ -18,7 +18,7 @@ class News
         // Все статьи
     public function AllNews() {
         return $this->DBQuery("
-    SELECT * FROM news
+          SELECT * FROM news
     ");
     }
     // Одна статья

@@ -8,7 +8,6 @@
 <div id="maket">
     <div id="pagesnews">
 
-
             <article>
                 <h1><?=$get_page['title'];?></h1>
                 <div><?=$get_page['text'];?></div>
@@ -18,12 +17,6 @@
     <?
     var_dump($get_page);
         echo ($value["title"]);
-
-
-
-
-
-
     ?>
     </div>
 </div>

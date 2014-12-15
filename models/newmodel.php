@@ -6,6 +6,7 @@
  * Time: 15:26
  */
 require_once __DIR__ . '/modelnews.php';
+
 class Views
     implements Iterator
 {
@@ -17,9 +18,7 @@ class Views
         ob_end_clean();
         return $ret;
     }
-
     private $__all = [];
-    // protected $array = array();
     public function __set($key, $value)
     {
         $this->__all[$key] = $value;
@@ -29,7 +28,6 @@ class Views
     {
         return $this->__all[$key];
     }
-
     public function current()
     {
         return current($this->__all);
@@ -56,16 +54,24 @@ $news = new News();
 $views = new Views;
 $views->articles = $news->AllNews(); // Передаем во view данные
 $html = $views->render('allnews.php'); // Записываем в переменную и вызываем отображение шаблона с ранее переданными данными
+var_dump($html);
 
-var_dump($html); // шаблон
-echo $html; // Ошибка  Invalid argument supplied for foreach()
+
+
+
+
+
+
+
+/*github/workli/views/allnews.php*/
+//$html; // Ошибка  Invalid argument supplied for foreach()
     /*var_dump($views->articles); // Выводит массив новостей*/
     //echo($views->current()) . '<br>'; // Первый элемент
-foreach ($views->articles as $key => $value) {
+/*foreach ($views->articles as $key => $value) {
     echo($value['title']) . '<br>'; //Работает
-}
+}*/
 
-
+//echo($html); // шаблон
 
 
 
@@ -73,6 +79,15 @@ foreach ($views->articles as $key => $value) {
 var_dump($view->render('allnews.php')); // шаблон
 $html = $view->render('allnews.php');
 */
+
+
+
+
+
+
+
+
+
 
 
 
@@ -163,129 +178,10 @@ var_dump($st->valid()); // true
 $st->rewind();
 echo($st->next());
 */
-/*
-class View
-implements Iterator
-{
-    private $__das = [];
-    // Магия, котороя вызывается каждый раз когда есть значение, которое не описанно в классе. Что делать с ним определяем сами
-    public function __set($key, $value)
-    {
-        $this->__das[$key] = $value;
-    }
-    // Вызывается необъявленное недоступное свойство
-    public function __get($key)
-    {
-        return $this->__das[$key];
-    }
-    public function render($templates)
-    {
-        ob_start();
-        include __DIR__ . '/../' . 'views/' . $templates;
-        $ret = ob_get_contents();
-        ob_end_clean();
-        return $ret;
-    }
-    // Возвращает текущий элемент массива
-    public function current()
-    {
-        return current($this->__das);
-    }
-
-    public function next()
-    {
-
-    }
-    public function key()
-    {
-
-    }
-
-    public function valid()
-    {
-
-    }
-
-    public function rewind()
-    {
-
-    }
-}
-
-
-$news = new News();
-$view = new View();
-$view->articles = $news->AllNews();
-var_dump($view->render('allnews.php')); // шаблон
-$html = $view->render('allnews.php');
-
-var_dump($view->current()) . '<br>'; // Первый элемент
-
-
-//echo $html;
-
-
-
-// var_dump($view->articles);
-
-// $html = $view->render('allnews.php');
-// echo $html;
 
 
 
 
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-$array = [
-    'fruit1' => 'apple',
-    'fruit2' => 'orange',
-    'fruit3' => 'grape',
-    'fruit4' => 'apple',
-    'fruit5' => 'apple',
-    'fruit6' => 'orange'
-];
-// этот цикл выведет все ключи ассоциативного массива,
-// значения которых равны "apple"
-while ($fruit_name = current($array)) {
-    if ($fruit_name == 'apple') {
-        echo key($array) . '<br />';
-    }
-    next($array);
-}
-*/
-/*
-// Интерфейс
-interface IModel{
-    public function getAll();
-    public function getOne($id);
-}
-*/
 
 // В качестве типа можно указать интерфейс, некий фильир
 // function statAuthors(IHasAuthor $obj){}
