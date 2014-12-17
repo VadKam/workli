@@ -5,14 +5,16 @@
  * Date: 09.12.2014
  * Time: 15:57
  */
+require 'boot.php';
+/*
 require_once __DIR__ . '/models/newmodel.php';
 require_once __DIR__ . '/models/modelnews.php';
-include __DIR__ . '/views/allnews.php';
+*/
+
+$view->articles = $news->AllNews();
+echo ($view->display('allnews.php'));
 
 
-$view->display('allnews.php');
-
-//echo $html;
 
 
 

@@ -6,6 +6,7 @@
 </head>
 <body>
 <div id="maket">
+
     <div id="pagesnews">
 
             <article>
@@ -13,11 +14,6 @@
                 <div><?=$get_page['text'];?></div>
                 <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$get_page['datanews'];?></div>
             </article>
-
-    <?
-    var_dump($get_page);
-        echo ($value["title"]);
-    ?>
     </div>
 </div>
 </body>

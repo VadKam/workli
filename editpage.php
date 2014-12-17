@@ -6,12 +6,12 @@
  * Time: 15:29
  */
 require_once __DIR__ . '/models/modelnews.php';
+require_once __DIR__ . '/models/newmodel.php';
 
 $editnews_id  = (int)$_GET['editnews'];
 // Помещаем в $get_page функцию, которая получает полученную id страницу
-$news = new News();
-$edit_page = $news->selectArticle($editnews_id);
-if (false === $edit_page)
+$view->edit_page = $news->selectArticle($editnews_id);
+if (false === $view->edit_page)
     redirect('404.php');
 
-include_once __DIR__ . '/views/editnews.php';
+echo ($view->display('editnews.php'));
