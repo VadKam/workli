@@ -1,101 +1,116 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vladislav
- * Date: 14.12.2014
- * Time: 15:26
- */
 require_once __DIR__ . '/modelnews.php';
 
-
-// Класс, который будет хранить в себе все, что угодно
+// Проверка итератора
 class Storage
-    implements Countable, Iterator
+    implements Iterator, Countable
 {
-    private $__data = [];
-    // Магия, котороя вызывается каждый раз когда есть значение, которое не описанно в классе. Что делать с ним определяем сами
-    public function __set($key, $value)
+    private $data;
+    function __set($k, $v)
     {
-        $this->__data[$key] = $value;
+        $this->data[$k] = $v;
     }
-    // Вызывается необъявленное недоступное свойство
-    public function __get($key)
+
+    function __get($k)
     {
-        return $this->__data[$key];
+        $this->data[$k];
     }
-    // Countable
+
     public function count()
     {
-        return count($this->__data);
+        return count($this->data);
     }
 
-    // Иттератор - Интерфейс для внешних итераторов или объектов, которые могут повторять себя изнутри. Методы иттератор
-    public function rewind()
-    {
-
-    }
-    // Возвращает текущий элемент массива
     public function current()
     {
-        return current($this->__data);
+        return current($this->data);
     }
-    // Переходит к следующему элементу
-    public function next()
-    {
-        return next($this->__data);
-    }
-    // Возвращает ключ текущего элемента
+
     public function key()
     {
-        return  key($this->__data);
+        return key($this->data);
     }
-    // Проверка корректности позиции
+
+    public function next()
+    {
+        next($this->data);
+    }
+
     public function valid()
     {
-        return !empty($this->__data);
+        $key = key($this->data);
+        $var = ($key !== NULL && $key !== FALSE);
+        return $var;
     }
-    // Возвращает итератор на первый элемент
+
+    public function rewind()
+    {
+        reset($this->data);
+    }
+
+
+}
+/*
+$values = ['foot', 'bike',  'plane'  => 'assoc', '', 'car'];
+
+$views = new Storage($values);
+
+echo count($views) . '<br>';
+
+foreach ($views as $key => $value) {
+    print "$key: $value" . '<br>';
+}
+*/
+
+class View
+    extends Storage
+{
+    public function display($template)
+    {
+        ob_start();
+        foreach ($this as $k => $v) {
+            $$k = $v;
+        }
+        include __DIR__ . '/../' . 'views/' . $template;
+        $ret = ob_get_contents();
+        ob_get_clean();
+        // $ret = str_replace("ё", "е", $ret);
+        return $ret;
+    }
 }
 
+$news = new News();
+$view = new View();
+$view->articles = $news->AllNews();
+var_dump($view->articles);
+/*
+$tem = new Template();
+$news = new News();
+
+//$tem->news = $news->AllNews();
+
+$html = $tem->render('11.php');
+$html2 = $tem->render('allnews.php');
 
 
-$st = new Storage();
-$st->foo =  'foo1';
-$st->bar = 'bar11';
-echo count($st) . '<br>';
-echo $st->foo . '<br>';
-echo $st->bar . '<br>' . '<br>';
-
-$st->massiv1 = ['foot', 'bike', 'car', 'plane'  => 'assoc'];
-echo($st->current()) . '<br>'; // Первый элемент
-echo($st->current()) . '<br>'; // Первый элемент
-echo($st->next()) . '<br>'; // Второй элемент
-var_dump($st->next()) . '<br>'; // Третий элемент ($st->massiv1)
-var_dump($st->key()); // string 'massiv1' (length=7)
-
-$st ->massiv2 = [
-    'fruit1' => 'apple',
-    'fruit2' => 'orange',
-    'fruit3' => 'grape',
-    'fruit4' => 'apple',
-    'fruit5' => 'apple',
-    'fruit6' => 'orange'
-];
-
-$st->next();
-var_dump($st->key()); // string 'massiv2' (length=7)
-var_dump($st->valid()); // true
-$st->next();
-echo count($st) . '<br>';
-var_dump($st->valid()); // true
-
-$st->rewind();
-echo($st->next());
+//$html = $views->render('allnews.php');*/
 
 
 
 
 
+
+
+/*
+ob_start();
+include __DIR__ . '/../' . 'views/' . $templates;
+$ret = ob_get_contents();
+ob_end_clean();
+return $ret;
+*/
+
+
+/*
 
 class Views
     implements Iterator
@@ -144,7 +159,7 @@ $news = new News();
 $views = new Views;
 $views->articles = $news->AllNews(); // Передаем во view данные
 $html = $views->render('allnews.php'); // Записываем в переменную и вызываем отображение шаблона с ранее переданными данными
-var_dump($html);
+/*var_dump($html);*/
 
 
 
@@ -153,22 +168,11 @@ var_dump($html);
 
 
 
-/*github/workli/views/allnews.php*/
-//$html; // Ошибка  Invalid argument supplied for foreach()
-    /*var_dump($views->articles); // Выводит массив новостей*/
-    //echo($views->current()) . '<br>'; // Первый элемент
-/*foreach ($views->articles as $key => $value) {
-    echo($value['title']) . '<br>'; //Работает
-}*/
-
-//echo($html); // шаблон
 
 
 
-/*
-var_dump($view->render('allnews.php')); // шаблон
-$html = $view->render('allnews.php');
-*/
+
+
 
 
 

@@ -8,27 +8,13 @@
     <div id="pagesnews">
 
 
+        <?php foreach ($articles as $art): ?>
+        <article>
+            <h1><?=$art['title'];?></h1>
 
-        <?
-        echo "Здесь должен быть код <br>";
-        $i =0;
-        while($i < 10){
-            $i++;
-            echo $i . "<br>";
-        }
-        /*foreach ($views->articles as $key => $value) {
-        echo($value['title']) . '<br>'; //Работает
-        }*/
-        ?>
-        <?php foreach ($views->articles as $article): ?>
-            <article>
-                <h1><?=$article['title'];?></h1>
-                <div><?=$article['text'];?><a href=news.php?pagenews=<?=$article['id'];?> target="_blank">Читать далее...</a></div>
-                <div style="float: right; font-size: 12px; margin: 5px">Дата публикации <?=$article['datanews'];?></div>
-                <div><a target="_blank" href=editpage.php?editnews=<?=$article['id'];?>">Редактировать Новость<?=$article['id'];?></a></div>
-            </article>
+        </article>
+
         <?php endforeach;?>
-
 
 
     </div>
@@ -38,9 +24,6 @@
 </div>
 </body>
 </html>
-
-
-
 
 
 
