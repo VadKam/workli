@@ -5,8 +5,9 @@
  * Date: 10.12.2014
  * Time: 15:29
  */
-require_once __DIR__ . '/models/modelnews.php';
-require_once __DIR__ . '/models/newmodel.php';
+require 'boot.php';
+$news = new News();
+$view = new View();
 
 $editnews_id  = (int)$_GET['editnews'];
 // Помещаем в $get_page функцию, которая получает полученную id страницу

@@ -6,10 +6,14 @@
  * Time: 15:57
  */
 require 'boot.php';
+
+
 /*
 require_once __DIR__ . '/models/newmodel.php';
 require_once __DIR__ . '/models/modelnews.php';
 */
+$news = new News();
+$view = new View();
 
 $view->articles = $news->AllNews();
 echo ($view->display('allnews.php'));

@@ -6,8 +6,8 @@
  * Time: 14:18
  */
 //require_once __DIR__ . '/../models/modelnews.php';
-require __DIR__ . '/Storage.php';
-require __DIR__ . '/News.php';
+//require __DIR__ . '/News.php';
+//require __DIR__ . '/Storage.php';
 class View
     extends Storage
 {

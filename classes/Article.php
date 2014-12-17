@@ -5,7 +5,7 @@
  * Date: 17.12.2014
  * Time: 14:20
  */
-require __DIR__ . '/../functions/db.php';
+//require __DIR__ . '/DBConnect.php';
 //Создаем абстракиный класс Article наследующий DBConnect
 abstract class Article
     extends DBConnect

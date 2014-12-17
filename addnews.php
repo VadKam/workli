@@ -5,7 +5,7 @@
  * Date: 10.12.2014
  * Time: 15:34
  */
-require_once __DIR__ . '/models/modelnews.php';
+require 'boot.php';
 if(!empty($_POST['title']) && !empty($_POST['text'])){
     $title =  $_POST['title'];
     $text =  $_POST['text'];

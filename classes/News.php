@@ -5,9 +5,8 @@
  * Date: 17.12.2014
  * Time: 14:21
  */
-require_once __DIR__ . '/../functions/db.php';
-require __DIR__ . '/Article.php';
-
+//require_once __DIR__ . '/DBConnect.php';
+//require __DIR__ . '/Article.php';
 
 
 //Создаем класс News наследующий абстракиный класс Article
@@ -39,7 +38,6 @@ class News
             UPDATE news SET title='$new_title',text='$new_text' WHERE id='$id'
         ");
     }
-
 }
 
 
