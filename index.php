@@ -1,24 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vad Kaminskiy
- * Date: 09.12.2014
- * Time: 15:57
- */
 require 'boot.php';
 
+$route = $_GET['r'];
+$routeParts = explode('/', $route);
+
+$controllerClassName = ucfirst($routeParts[0]).'Controller';
+
+$controller = new $controllerClassName;
+$controller->action($routeParts[1]);
 
 /*
-require_once __DIR__ . '/models/newmodel.php';
-require_once __DIR__ . '/models/modelnews.php';
+$controller = new NewsController();
+$controller->action('all');
 */
-$news = new News();
-$view = new View();
-
-$view->articles = $news->AllNews();
-echo ($view->display('allnews.php'));
-
-
 
 
 
